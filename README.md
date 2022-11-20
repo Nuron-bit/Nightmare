@@ -80,6 +80,7 @@
 * [NightmareBot::RemoveHooks](#removehooks)
 * [NightmareBot::ToggleCollect](#togglecollect)
 
+# Structures
 
 ## Vector2
 | Type | Name | Description|
@@ -245,3 +246,86 @@
 ## RTVAR
 | Type | Name | Description|
 |:-----|:----:|:-----------|
+
+# Functions
+
+## sleep
+`void sleep(int milliseconds)`
+
+Sleeps thread
+
+Example:
+```lua
+print("Hello")
+sleep(1000)
+print("World!)
+```
+
+## Json
+`MultiTable Json(string json_text)`
+
+Converts string to json table.
+
+Example:
+```lua
+data = [[{
+  "player_name": "Nuron",
+  "player_age": 18
+}]]
+
+print(Json(data)["player_name"])
+```
+
+## GetBot
+`NightmareBot* GetBot(string name)`
+
+Gets bot via name
+
+Example: 
+```lua
+bot = GetBot("Nuron")
+bot:Say("i love Nightmare")
+```
+
+## GetBots
+`Table<NightmareBot*> GetBots()`
+
+Gets all bots. (returns NightmareBot Table)
+
+Example: 
+```lua
+for i, bot in pairs(GetBots()) do
+print(bot.name)
+end
+```
+
+
+## RTVAR::RTVAR
+`RTVAR* RTVAR(string content)`
+
+RTVAR Constructor.
+
+Example: 
+```lua
+rtvar = RTVAR([[
+name|Bongo
+userid|69
+]])
+```
+
+
+## RTVAR::GetParam
+`string GetParam(string key)`
+
+Gets Value by key/param.
+
+Example: 
+```lua
+rtvar = RTVAR([[
+name|Bongo
+userid|69
+]])
+
+print(rtvar:GetParam("name"))
+-- (Seems useless for you? You can parse many packets like OnSpawn)
+```
