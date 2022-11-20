@@ -433,3 +433,58 @@ for i, item_info in pairs(ItemDatabase.GetItems()) do
 print(string.format("name: %s, id: %i", item_info.name, item_info.id))
 end
 ```
+
+
+## Inventory::GetItem
+`InventoryItem* GetItem(int id)`
+
+Returns inventory item by id.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+inventory = bot:GetInventory()
+print(inventory:GetItem(242).count)
+```
+
+
+## Inventory::GetItems
+`Table<InventoryItem*> GetItem()`
+
+Returns inventory items as table.
+
+Example: 
+```lua
+for i, item in pairs(GetBot("Nightmare"):GetInventory():GetItems()) do
+print(string.format("{ item_id: %i; item_count: %i; }", item.id, item.count))
+end
+```
+
+
+## World:GetTile
+`Tile* GetTile(int tileX, int tileY)`
+
+Returns tile by world tile position.
+
+Example: 
+```lua
+for i, bot in pairs(GetBots()) do
+if(bot:GetWorld():GetTile(0,0).id == 242) then print("World lock found!") end
+end
+```
+
+
+## World:GetTiles
+`Table<Tile*> GetTiles()`
+
+Returns world Tiles.
+
+Example: 
+```lua
+dirt_count = 0
+for i, tile in pairs(GetBot("Nightmare"):GetWorld():GetTiles()) do 
+  if tile.id == 2 then dirt_count = dirt_count + 1 end
+end
+
+print("Found "..dirt_count.." dirt!")
+```
