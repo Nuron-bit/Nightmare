@@ -122,6 +122,10 @@
 | Vector2 | `size` | World Size |
 | Number | `tilecount` | World Tile Count |
 | Number | `objectcount` | World Object Count |
+| Table | `tiles` | Table Of World Tiles |
+| Table | `objects` | Table Of World Objects |
+| Table | `players` | Table Of World Players |
+| Table | `npcs` | Table Of World NPCs |
 
 ## Tile
 | Type | Name | Description|
