@@ -3,6 +3,7 @@
 * [Functions](#functions)
 * [Class Methods](#classfunctions)
 * [Hooks](#hooks)
+* [Events](#events)
 
 ## ChangeLogs
 - Vector4 removed :skull:
