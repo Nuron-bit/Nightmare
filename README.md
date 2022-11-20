@@ -35,7 +35,7 @@
 * [GetBots](#getbots)
 
 ## Class Methods
-* [RTVAR::RTVAR](#rtvar_constructor)
+* [RTVAR::RTVAR](#RTVAR::RTVAR)
 * [RTVAR::GetParam](#getparam)
 * [HttpClient::HttpClient](#httpclient_contructor)
 * [HttpClient::GET](#GET)
