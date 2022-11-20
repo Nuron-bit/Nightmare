@@ -299,6 +299,29 @@ print(bot.name)
 end
 ```
 
+## Vector2::Vector2
+`Vector2* Vector2(int x, int y)`
+
+Vector2 Constructor.
+
+Example: 
+```lua
+vc = Vector2(35, 46)
+print(string.format("Vector2(x: %i, y: %i)", vc.x, vc.y))
+```
+
+
+## Vector3::Vector3
+`Vector3* Vector3(int x, int y, int z)`
+
+Vector3 Constructor.
+
+Example: 
+```lua
+vc = Vector3(27, 43, 79)
+print(string.format("Vector3(x: %i, y: %i, z: %i)", vc.x, vc.y, vc.z))
+```
+
 
 ## RTVAR::RTVAR
 `RTVAR* RTVAR(string content)`
@@ -328,4 +351,85 @@ userid|69
 
 print(rtvar:GetParam("name"))
 -- (Seems useless for you? You can parse many packets like OnSpawn)
+```
+
+
+## HttpClient::HttpClient
+`HttpClient* HttpClient(string url)`
+
+HttpClient Constructor
+
+Example: 
+```lua
+client = HttpClient("https://www.growtopiagame.com")
+```
+
+
+## HttpClient::GET
+`HttpResponse* GET(string path)`
+
+HTTP GET Request
+
+Example: 
+```lua
+client = HttpClient("https://www.growtopiagame.com")
+response = client:GET('/')
+
+print(response.body)
+```
+
+
+## HttpClient::POST
+`HttpResponse* POST(string path, string content, string content_type)`
+
+HTTP POST Request
+
+Example: 
+```lua
+client = HttpClient("https://catalog.roblox.com")
+response = client:POST("path_here", "content_here", "content_type_here")
+```
+
+
+## HttpClient::setHeaders
+`void setHeaders(Table<string, string> headers)`
+
+Used for setting custom headers.
+
+Example: 
+```lua
+client = HttpClient("https://www.growtopiagame.com")
+headers = {}
+headers["User-Agent"] = "Nightmare+"
+
+client:setHeaders(headers)
+```
+
+
+## ItemDatabase::GetItem
+`static ItemInfo* GetItem(int id)`
+
+Returns item info via item id.
+
+Example: 
+```lua
+-- In Nightmare, there is static ItemDatabase class defined.
+item = ItemDatabase.GetItem(2)
+
+print(string.format("{ item_name: %s, item_actionType: %i }",
+  item.name,
+  item.actionType))
+```
+
+
+## ItemDatabase::GetItem
+`static Table<ItemInfo*> GetItems()`
+
+Returns items table.
+
+Example: 
+```lua
+for i, item_info in pairs(ItemDatabase.GetItems()) do
+print(string.format("name: %s, id: %i", item_info.name, item_info.id))
+end
 ```
