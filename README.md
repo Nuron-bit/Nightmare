@@ -67,7 +67,7 @@
 * [NightmareBot::LeaveWorld](#leaveworld)
 * [NightmareBot::Warp](#warp)
 * [NightmareBot::Say](#say)
-* [NightmareBot::FindPath](#findpath)
+* [NightmareBot::FindPath](#NightmareBot:FindWorldPath)
 * [NightmareBot::FindWorldPath](#worldpath)
 * [NightmareBot::SendRaw](#sendraw)
 * [NightmareBot::SendGameMessage](#send3)
@@ -422,7 +422,7 @@ print(string.format("{ item_name: %s, item_actionType: %i }",
 ```
 
 
-## ItemDatabase::GetItem
+## ItemDatabase::GetItems
 `static Table<ItemInfo*> GetItems()`
 
 Returns items table.
@@ -487,4 +487,120 @@ for i, tile in pairs(GetBot("Nightmare"):GetWorld():GetTiles()) do
 end
 
 print("Found "..dirt_count.." dirt!")
+```
+
+
+## World:GetPlayer
+`NetAvatar* GetPlayer(string growid)`
+
+Returns player.
+
+Example: 
+```lua
+player = GetBot("Nightmare"):GetWorld():GetPlayer("Nuron")
+print(player.name)
+```
+
+
+## World:GetPlayers
+`Table<NetAvatar*> GetPlayers()`
+
+Returns player list.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+for i, player in pairs(bot:GetWorld():GetPlayers()) do
+bot:Say(string.format("/ban %s", player.name))
+end
+```
+
+
+## World:GetObject
+`NetObject* GetObject(int object_id)`
+
+Returns object.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:Collect(bot:GetWorld():GetObject(1))
+```
+
+
+## World:GetObjects
+`Table<NetObject*> GetObjects()`
+
+Returns object list.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+for i, obj in pairs(bot:GetWorld():GetObjects()) do
+print(string.format("Found %s in position (%i, %i).", ItemDatabase.GetItem(obj.id).name, obj.x, obj.y))
+end
+```
+
+
+## World:GetNPC
+`NPC* GetNPC(int npc_index)`
+
+Returns NPC.
+
+Example: 
+```lua
+npc = GetBot("Nightmare"):GetWorld():GetNPC(0)
+if npc then
+print("World has npc!")
+end
+```
+
+
+## World:GetNPCs
+`Table<NPC*> GetNPCs()`
+
+Returns NPC list.
+
+Example: 
+```lua
+npc = GetBot("Nightmare"):GetWorld():GetNPC(0)
+if npc then
+print("World has npc!")
+end
+```
+
+
+## NightmareBot:GetLocal
+`NetAvatar* GetLocal()`
+
+Returns local net avatar.
+
+Example: 
+```lua
+localbot = GetBot("Nightmare"):GetLocal()
+if localbot then
+print(string.format("Bot is in position (%i, %i)", localbot.x, localbot.y))
+end
+```
+
+
+## NightmareBot:FindPath
+`bool FindPath(int x, int y)`
+
+PathFinder.
+
+Example: 
+```lua
+GetBot("Nightmare"):FindPath(36, 36)
+```
+
+
+## NightmareBot:FindWorldPath
+`bool FindWorldPath(float x, float y)`
+
+PathFinder.
+
+Example: 
+```lua
+GetBot("Nightmare"):FindWorldPath(420, 69)
 ```
