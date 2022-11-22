@@ -1,7 +1,7 @@
 # Nuron's Nightmare Executor Api
 * [Structs](#structs)
 * [Functions](#functions)
-* [Class Methods](#classfunctions)
+* [Class Methods](#classmethods)
 * [Hooks](#hooks)
 * [Events](#events)
 
@@ -35,7 +35,7 @@
 * [GetBots](#getbots)
 
 ## Class Methods
-* [RTVAR::RTVAR](#RTVAR::RTVAR)
+* [RTVAR::RTVAR](#rtvar::rtvar)
 * [RTVAR::GetParam](#getparam)
 * [HttpClient::HttpClient](#httpclient_contructor)
 * [HttpClient::GET](#GET)
@@ -299,7 +299,7 @@ print(bot.name)
 end
 ```
 
-## Vector2::Vector2
+## Vector2:Vector2
 `Vector2* Vector2(int x, int y)`
 
 Vector2 Constructor.
@@ -311,7 +311,7 @@ print(string.format("Vector2(x: %i, y: %i)", vc.x, vc.y))
 ```
 
 
-## Vector3::Vector3
+## Vector3:Vector3
 `Vector3* Vector3(int x, int y, int z)`
 
 Vector3 Constructor.
@@ -323,7 +323,7 @@ print(string.format("Vector3(x: %i, y: %i, z: %i)", vc.x, vc.y, vc.z))
 ```
 
 
-## RTVAR::RTVAR
+## RTVAR:RTVAR()
 `RTVAR* RTVAR(string content)`
 
 RTVAR Constructor.
@@ -337,7 +337,7 @@ userid|69
 ```
 
 
-## RTVAR::GetParam
+## RTVAR:GetParam
 `string GetParam(string key)`
 
 Gets Value by key/param.
@@ -354,7 +354,7 @@ print(rtvar:GetParam("name"))
 ```
 
 
-## HttpClient::HttpClient
+## HttpClient:HttpClient
 `HttpClient* HttpClient(string url)`
 
 HttpClient Constructor
@@ -365,7 +365,7 @@ client = HttpClient("https://www.growtopiagame.com")
 ```
 
 
-## HttpClient::GET
+## HttpClient:GET
 `HttpResponse* GET(string path)`
 
 HTTP GET Request
@@ -379,7 +379,7 @@ print(response.body)
 ```
 
 
-## HttpClient::POST
+## HttpClient:POST
 `HttpResponse* POST(string path, string content, string content_type)`
 
 HTTP POST Request
@@ -391,7 +391,7 @@ response = client:POST("path_here", "content_here", "content_type_here")
 ```
 
 
-## HttpClient::setHeaders
+## HttpClient:setHeaders
 `void setHeaders(Table<string, string> headers)`
 
 Used for setting custom headers.
@@ -406,7 +406,7 @@ client:setHeaders(headers)
 ```
 
 
-## ItemDatabase::GetItem
+## ItemDatabase:GetItem
 `static ItemInfo* GetItem(int id)`
 
 Returns item info via item id.
@@ -422,7 +422,7 @@ print(string.format("{ item_name: %s, item_actionType: %i }",
 ```
 
 
-## ItemDatabase::GetItems
+## ItemDatabase:GetItems
 `static Table<ItemInfo*> GetItems()`
 
 Returns items table.
@@ -435,7 +435,7 @@ end
 ```
 
 
-## Inventory::GetItem
+## Inventory:GetItem
 `InventoryItem* GetItem(int id)`
 
 Returns inventory item by id.
@@ -448,7 +448,7 @@ print(inventory:GetItem(242).count)
 ```
 
 
-## Inventory::GetItems
+## Inventory:GetItems
 `Table<InventoryItem*> GetItem()`
 
 Returns inventory items as table.
@@ -604,3 +604,327 @@ Example:
 ```lua
 GetBot("Nightmare"):FindWorldPath(420, 69)
 ```
+
+
+## NightmareBot:Hit
+`bool Hit(int tileX, int tileY)`
+
+For hitting Tile.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Hit(36, 36) end
+end
+```
+
+
+## NightmareBot:Wrench
+`bool Wrench(int tileX, int tileY)`
+
+For wrenching Tile.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Wrench(36, 36) end
+end
+```
+
+
+## NightmareBot:Place
+`bool Place(int tileX, int tileY, int itemID)`
+
+For placing blocks.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Place(36, 36, 242) end
+end
+```
+
+
+## NightmareBot:Enter
+`bool Enter()`
+
+For entering door in bot position.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Enter() end
+end
+```
+
+
+## NightmareBot:Wear
+`bool Wear(int itemID)`
+
+For wearing clothes.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Wear(1784) end
+end
+```
+
+
+## NightmareBot:UnWear
+`bool UnWear(int itemID)`
+
+For unwearing clothes.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:UnWear(1784) end
+end
+```
+
+
+## NightmareBot:Drop
+`bool Drop(int itemID, int itemCount)`
+
+For dropping inventory items.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Drop(7188, 1) end
+end
+```
+
+
+## NightmareBot:Trash
+`bool Trash(int itemID, int itemCount)`
+
+For trashing inventory items.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  if bot:GetLocal() then bot:Trash(2, 200) end
+end
+```
+
+
+## NightmareBot:LeaveWorld
+`void LeaveWorld()`
+
+For leaving world.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected and bot:GetWorld() then
+  bot:LeaveWorld()
+end
+```
+
+
+## NightmareBot:Warp
+`void Warp(string worldName, string doorID)`
+
+For warping.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+bot:Warp("JACKBOWE")
+```
+
+
+## NightmareBot:Say
+`void Say(string Text)`
+
+For chatting.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:Say("Im noob :(")
+```
+
+
+## NightmareBot:SendRaw
+`void SendRaw(GamePacket packet)`
+
+For sending raw packet.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+packet = {}
+packet.type = 0
+packet.int_x = -1
+packet.int_y = -1
+packet.vec_x = bot:GetLocal().x - 32
+packet.vec_y = bot:GetLocal().y
+
+bot:SendRaw(packet)
+
+-- Moves bot to left.
+```
+
+
+## NightmareBot:SendGameMessage
+`void SendGameMessage(string packet)`
+
+For sending game message.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:SendGameMessage("action|join_request\nname|Github\ninvitedWorld|0")
+```
+
+
+## NightmareBot:SendGeneric
+`void SendGeneric(string packet)`
+
+For sending generic text.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:SendGeneric("generic_text")
+```
+
+
+## NightmareBot:SendPacket
+`void SendPacket(int type, string packet)`
+
+For sending packets via types.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:SendPacket(2, "action|dialog_return\ndialog_name|Executor")
+```
+
+
+## NightmareBot:Connect
+`bool Connect()`
+
+For connecting to gt server.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if not bot.connected then
+  bot:Connect()
+end
+```
+
+
+## NightmareBot:Disconnect
+`void Disconnect()`
+
+For disconnecting from gt server.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+if bot.connected then
+  bot:Disconnect()
+end
+```
+
+
+## NightmareBot:AddHook
+`void AddHook(enum<HookTypes> HookType, luaFunction function)`
+
+For adding hooks/callbacks.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+
+function onReceivedVariantList(var)
+print(var[0])
+end
+
+bot:AddHook(OnVariantList, onReceivedVariantList)
+```
+
+
+## NightmareBot:RemoveHook
+`void RemoveHook(enum<HookTypes> HookType)`
+
+For removing specific hook.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:RemoveHook(OnVariantList)
+```
+
+
+## NightmareBot:RemoveHooks
+`void RemoveHooks()`
+
+For removing all hooks.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:RemoveHooks()
+```
+
+
+## NightmareBot:ToggleCollect
+`void ToggleCollect(bool isActive)`
+
+For toggling autocollect mode.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+bot:ToggleCollect(true)
+```
+
+# Hooks
+
+## OnVariantList
+
+Example:
+```lua
+bot = GetBot("Nightmare")
+
+function onVar(bot, var)
+if var[0] == "OnSpawn" and bot.name == "Nightmare" then
+  rtvar = RTVAR(var[1])
+  print(string.format("Player %s entered the world!", 
+  rtvar:GetParam("name"))
+end
+end
+
+bot:AddHook(OnVariantList, onVar)
+```
+## OnGameMessage
+## OnGenericText
+## OnTrackPacket
+## OnGamePacket
