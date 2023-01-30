@@ -188,9 +188,9 @@
 |:-----|:----:|:-----------|
 | string | `name` | World Name |
 | Number | `width` | World width |
-| Number | `height` | World width |
+| Number | `height` | World height |
 | Number | `lockX` | World Lock Tile X |
-| Number | `lockY` | World Lock Tile X |
+| Number | `lockY` | World Lock Tile Y |
 | Number | `tileCount` | World Tile Count |
 | Table | `tiles` | Table Of World Tiles, accessed by GetTiles() |
 | Table | `objects` | Table Of World Objects, accessed by GetObjects() |
