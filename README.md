@@ -6,12 +6,13 @@
 * [Events](#events)
 
 ## ChangeLogs
-- Vector4 removed :skull:
-- Many things added.
+- Updated Classes and added Hooks.
 
 ## Structs
 * [Vector2](#vector2)
 * [Vector3](#vector3)
+* [Embed](#embed)
+* [Webhook](#webhook)
 * [NightmareBot](#nightmarebot)
 * [Inventory](#inventory)
 * [InventoryItem](#inventoryitem)
@@ -22,17 +23,18 @@
 * [Clothes](#clothes)
 * [NPC](#npc)
 * [GamePacket](#gamepacket)
-* [ItemDatabase](#itemdatabase)
 * [ItemInfo](#iteminfo)
 * [HttpClient](#httpclient)
-* [HttpResponse](#httpresponse)
+* [HttpResult](#httpresult)
 * [RTVAR](#rtvar)
 
 ## Functions
 * [sleep(ms) - Sleep(ms)](#sleep)
-* [Json](#json)
 * [GetBot](#getbot)
 * [GetBots](#getbots)
+* [GetItemInfo](#getiteminfo)
+* [GetItemInfos](#getiteminfos)
+* [RemoveColor](#removecolor)
 
 ## Class Methods
 * [RTVAR:RTVAR](#rtvarrtvar)
@@ -99,40 +101,69 @@
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 | String | `name` | Bot name |
+| BotStatus | `status` | Bot status |
 | Bool | `connected` | is Connected |
-| Inventory | `inventory` | Bot Inventory |
+| Bool | `connecting` | is Connecting |
+| Bool | `reconnecting` | is Reconnecting |
+| Inventory | `inventory`| Bot Inventory |
 | World | `world` | Bot World |
 | NetAvatar | `local` | Bot Local |
+| Number | `netid` | Bot netid |
+| Number | `userid` | Bot userid |
+| String | `token` | Bot token |
+| String | `uuidToken` | Bot UUID Token |
+| Number | `gems` | Gem count |
+| Number | `pearls` | Pearl count |
+| Bool | `autoAccess` | is AutoAccess Enabled |
+| Bool | `autoBan` | is AutoBan Enabled |
+| Bool | `autoLeave` | is AutoLeave Enabled |
+| Bool | `autoTutorial` | is AutoTutorial Enabled |
+| CaptchaStatus | `captchaStatus` | Captcha Status |
+| Number | `collectInterval` | Collect Interval as miliseconds |
+| Number | `collectRange` | Collect Range |
+| Bool | `autocollect` | is AutoCollect Enabled |
+| Bool | `ignoreEssence` | is IgnoreEssence Enabled |
+| Bool | `ignoreGem` | is IgnoreGem Enabled |
+| Bool | `inGame` | is Bot inGame |
+| Bool | `isAccountSecured` | is Account Secured |
+| Bool | `isMoving` | is Bot Moving |
+| Bool | `hasCaptcha` | is Solving Captcha |
+| Bool | `solvedCaptcha` | is Solved Captcha |
 
 ## InventoryItem
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 | Number | `id` | Inventory Item's id |
 | Number | `count` | Inventory Item's count |
-| Bool | `isActive` | Inventory Item's active status |
+| Bool | `isActive` or `active` | Inventory Item's active status |
 
 ## Inventory
 | Type | Name | Description|
 |:-----|:----:|:-----------|
-| Table | `items` | Inventory Item Table |
+| Number | `version` | Inventory Version |
+| Number | `slotCount` | Inventory Slot Count |
+| Number | `itemCount` | Inventory Item Count |
+| Table | `items` | Inventory Items, accessed by GetItems() |
 
 ## World
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 | string | `name` | World Name |
-| Vector2 | `size` | World Size |
-| Number | `tilecount` | World Tile Count |
-| Number | `objectcount` | World Object Count |
-| Table | `tiles` | Table Of World Tiles |
-| Table | `objects` | Table Of World Objects |
-| Table | `players` | Table Of World Players |
-| Table | `npcs` | Table Of World NPCs |
+| Number | `width` | World width |
+| Number | `height` | World width |
+| Number | `lockX` | World Lock Tile X |
+| Number | `lockY` | World Lock Tile X |
+| Number | `tileCount` | World Tile Count |
+| Table | `tiles` | Table Of World Tiles, accessed by GetTiles() |
+| Table | `objects` | Table Of World Objects, accessed by GetObjects() |
+| Table | `players` | Table Of World Players, accessed by GetPlayers() |
+| Table | `npcs` | Table Of World NPCs, accessed by GetNPCs() |
 
 ## Tile
 | Type | Name | Description|
 |:-----|:----:|:-----------|
-| Number | `fg` | Tile Foreground ID |
-| Number | `bg` | Tile Background ID |
+| Number | `fg` or `foreground` | Tile Foreground ID |
+| Number | `bg` or `background` | Tile Background ID |
 | Number | `x` | Tile Position x |
 | Number | `y` | Tile Position y |
 | Number | `parent` | Tile parent |
@@ -154,8 +185,8 @@
 |:-----|:----:|:-----------|
 | Number | `hat` | Hat |
 | Number | `shirt` | Shirt |
-| Number | `pants` | Pants |
-| Number | `shoes` | Shoes |
+| Number | `pants` or `pant` | Pants |
+| Number | `shoes` or `shoe` | Shoes |
 | Number | `face` | Face |
 | Number | `hand` | Hand |
 | Number | `wings` | Wings/Back |
@@ -169,7 +200,7 @@
 | String | `name` | Player's name |
 | String | `alt_name` | Player's alt name |
 | Number | `netid` | Player's netid | 
-| Number | `userid` | Player's userid | 
+| Number | `userid` or `uid` | Player's userid | 
 | Number | `x` | Player's position x | 
 | Number | `y` | Player's position y | 
 | Boolean | `isMod` | Player's mod status | 
@@ -183,8 +214,8 @@
 |:-----|:----:|:-----------|
 | Number | `id` | NPC id/index |
 | Number | `type` | NPC type |
-| Vector2 | `position` | NPC's current position |
-| Vector2 | `nextPosition` | Position that NPC is going to. |
+| Number | `x` | NPC Position X |
+| Number | `y` | NPC Position Y |
 
 ## GamePacket
 | Type | Name |
@@ -223,7 +254,6 @@
 | Number | `hitSoundType` | Item's Hit Sound Type |
 | Number | `itemKind` | Item's Kind |
 | Number | `collisionType` | Item's Collision Type |
-| Number | `dropChance` | Item's Drop Chance |
 | Number | `clothingType` | Item's Clothing Type |
 | Number | `rarity` | Item's Rarity |
 | Number | `flags1` | Item's unk1 |
@@ -232,16 +262,33 @@
 | Number | `seedOverlayColor` | Item's Seed Overlay Color |
 | Number | `growTime` | Seed's Growtime |
 
+## Embed
+| Type | Name | Description|
+|:-----|:----:|:-----------|
+| String | `title` | Embed Title |
+| String | `description` | Embed Description |
+| String | `url` | Embed Url |
+| Number | `color` | Embed Color |
+
+## Webhook
+| Type | Name | Description|
+|:-----|:----:|:-----------|
+| String | `username` | Webhook Username |
+| String | `content` | Webhook content |
+| String | `embed` | Webhook Embed (only one) |
+| String | `allow_mentions` | Webhook Mentions |
+| String | `avatar` | Webhook Avatar URL |
+| String | `url` | Webhook URL |
+
 ## HttpClient
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 
-## HttpResponse
+## HttpResult
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 | String | `body` | Received Data |
-| Number | `status` | HTTP Status |
-| Number | `version` | HTTP Version |
+| HttpStatus | `status` | HTTP Status |
 
 ## RTVAR
 | Type | Name | Description|
@@ -299,29 +346,44 @@ print(bot.name)
 end
 ```
 
-## Vector2:Vector2
-`Vector2* Vector2(int x, int y)`
+## GetItemInfo
+`Item* GetItemInfo(Number id) & Item* GetItemInfo(string name)`
 
-Vector2 Constructor.
-
-Example: 
-```lua
-vc = Vector2(35, 46)
-print(string.format("Vector2(x: %i, y: %i)", vc.x, vc.y))
-```
-
-
-## Vector3:Vector3
-`Vector3* Vector3(int x, int y, int z)`
-
-Vector3 Constructor.
+Gets Item Info by item's id or item's name.
 
 Example: 
 ```lua
-vc = Vector3(27, 43, 79)
-print(string.format("Vector3(x: %i, y: %i, z: %i)", vc.x, vc.y, vc.z))
+item = GetItemInfo("Legendary Wings")
+
+if item then -- Incase its a nil value.
+  print(item.clothingType)
+end
 ```
 
+## GetItemInfos
+`Table<Item*> GetItemInfos()`
+
+Returns all item infos.
+
+Example: 
+```lua
+for _, item in pairs(GetItemInfos()) do
+  if item.clothingType ~= 0 then
+    print(string.format("Item %s is cloth", item.name))
+  end
+end
+```
+
+## RemoveColor
+`string RemoveColor()`
+
+Clears colors from a text.
+
+Example: 
+```lua
+colorful_text = "`1Hello `2user`0!"
+normal_text = RemoveColor(colorful_text) -- Which equals to "Hello user!"
+```
 
 ## RTVAR:RTVAR()
 `RTVAR* RTVAR(string content)`
@@ -910,21 +972,100 @@ bot:ToggleCollect(true)
 
 ## OnVariantList
 
-Example:
+**Function Definition:**
+```lua
+function(NightmareBot* bot, Table<Variant> variantList)
+```
+
+**Example:**
 ```lua
 bot = GetBot("Nightmare")
 
 function onVar(bot, var)
 if var[0] == "OnSpawn" and bot.name == "Nightmare" then
   rtvar = RTVAR(var[1])
-  print(string.format("Player %s entered the world!", 
-  rtvar:GetParam("name"))
+  if rtvar:FindKey("name") then
+    print(string.format("Player %s entered the world!", 
+    rtvar:GetParam("name"))
+  end
 end
 end
 
 bot:AddHook(OnVariantList, onVar)
 ```
+
 ## OnGameMessage
+
+**Function Definition:**
+```lua
+function(NightmareBot* bot, string game_message)
+```
+
+**Example:**
+```lua
+bot = GetBot("Nightmare")
+
+function onMessage(bot, message)
+print(message)
+end
+
+bot:AddHook(OnGameMessage, onMessage)
+```
+
 ## OnGenericText
+
+**Function Definition:**
+```lua
+function(NightmareBot* bot, string generic_text)
+```
+
+**Example:**
+```lua
+bot = GetBot("Nightmare")
+
+function onGeneric(bot, message)
+print(message)
+end
+
+bot:AddHook(OnGenericText, onGeneric)
+```
+
 ## OnTrackPacket
+
+**Function Definition:**
+```lua
+function(NightmareBot* bot, string packet)
+```
+
+**Example:**
+```lua
+bot = GetBot("Nightmare")
+
+function onTrack(bot, packet)
+print("Track Ev: "..RTVAR(packet):GetParam("eventName"))
+end
+
+bot:AddHook(OnTrackPacket, onTrack)
+```
+
 ## OnGamePacket
+
+**Function Definition:**
+```lua
+function(NightmareBot* bot, GameUpdatePacket* packet)
+```
+
+**Example:**
+```lua
+bot = GetBot("Nightmare")
+
+function onPacket(bot, packet)
+print(string.format("Raw Type: %d", packet.type))
+if packet.type == 4 then
+ print("Bot entered a world!")
+end
+end
+
+bot:AddHook(OnGamePacket, onPacket)
+```
+
