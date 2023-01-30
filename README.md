@@ -8,12 +8,19 @@
 ## ChangeLogs
 - Updated Classes and added Hooks.
 
+## Enums
+* [Packet Type](#packettype)
+* [Bubble Type](#bubbletype)
+* [Captcha Status](#captchastatus)
+* [Bot Status](#botstatus)
+* [Http Status](#httpstatus)
+
 ## Structs
 * [Vector2](#vector2)
 * [Vector3](#vector3)
 * [Embed](#embed)
 * [Webhook](#webhook)
-* [NightmareBot](#nightmarebot)
+* [Bot](#bot)
 * [Inventory](#inventory)
 * [InventoryItem](#inventoryitem)
 * [World](#world)
@@ -37,50 +44,81 @@
 * [RemoveColor](#removecolor)
 
 ## Class Methods
-* [RTVAR:RTVAR](#rtvarrtvar)
-* [RTVAR:GetParam](#rtvargetparam)
-* [HttpClient:HttpClient](#httpclienthttpclient)
-* [HttpClient:GET](#httpclientget)
-* [HttpClient:POST](#httpclientpost)
-* [HttpClient:setHeaders](#httpclientsetheaders)
-* [Vector2:Vector2](#vector2vector2)
-* [Vector3:Vector3](#vector3vector3)
-* [ItemDatabase:GetItem](#itemdatabasegetitem)
-* [ItemDatabase:GetItems](#itemdatabasegetitems)
-* [Inventory:GetItem](#inventorygetitem)
-* [Inventory:GetItems](#inventorygetitems)
-* [World:GetTile](#worldgettile)
-* [World:GetTiles](#worldgettiles)
-* [World:GetPlayer](#worldgetplayer)
-* [World:GetPlayers](#worldgetplayers)
-* [World:GetObject](#worldgetobject)
-* [World:GetObjects](#worldgetobjects)
-* [World:GetNPC](#worldgetnpc)
-* [World:GetNPCs](#worldgetnpcs)
-* [NightmareBot:GetLocal](#nightmarebotgetlocal)
-* [NightmareBot:Hit](#nightmarebothit)
-* [NightmareBot:Wrench](#nightmarebotwrench)
-* [NightmareBot:Place](#nightmarebotplace)
-* [NightmareBot:Enter](#nightmarebotenter)
-* [NightmareBot:Wear](#nightmarebotwear)
-* [NightmareBot:UnWear](#nightmarebotunwear)
-* [NightmareBot:Drop](#nightmarebotdrop)
-* [NightmareBot:Trash](#nightmarebottrash)
-* [NightmareBot:LeaveWorld](#nightmarebotleaveworld)
-* [NightmareBot:Warp](#nightmarebotwarp)
-* [NightmareBot:Say](#nightmarebotsay)
-* [NightmareBot:FindPath](#nightmarebotfindpath)
-* [NightmareBot:FindWorldPath](#nightmarebotfindworldpath)
-* [NightmareBot:SendRaw](#nightmarebotsendraw)
-* [NightmareBot:SendGameMessage](#nightmarebotsendgamemessage)
-* [NightmareBot:SendGeneric](#nightmarebotsendgeneric)
-* [NightmareBot:SendPacket](#nightmarebotsendpacket)
-* [NightmareBot:Connect](#nightmarebotconnect)
-* [NightmareBot:Disconnect](#nightmarebotdisconnect)
-* [NightmareBot:AddHook](#nightmarebotaddhook)
-* [NightmareBot:RemoveHook](#nightmarebotremovehook)
-* [NightmareBot:RemoveHooks](#nightmarebotremovehooks)
-* [NightmareBot:ToggleCollect](#nightmarebottogglecollect)
+### RTVAR
+* [RTVAR(string text)](#rtvarrtvar)
+* [GetParam](#rtvargetparam)
+* [GetIntParam](#rtvargetintparam)
+* [GetLongParam](#rtvargetlongparam)
+* [FindKey](#rtvarfindkey)
+
+### HttpClient
+* [HttpClient()](#httpclienthttpclient)
+* [SetURL](#httpclientseturl)
+* [SetPath](#httpclientsetpath)
+* [AddHeader](#httpclientaddheader)
+* [RemoveHeader](#httpclientremoveheader)
+* [SetContentType](#httpclientsetcontenttype)
+* [GET](#httpclientget)
+* [POST](#httpclientpost)
+
+### HttpResult
+* [GetError](#httpresultgeterror)
+
+### Webhook
+* [SendWebhook](#webhooksendwebhook)
+
+### Bot
+* [Connect](#botconnect)
+* [Disconnect](#botdisconnect)
+* [GetInventory](#botgetinventory)
+* [GetWorld](#botgetworld)
+* [GetLocal](#botgetlocal)
+* [Drop](#botdrop)
+* [Trash](#bottrash)
+* [Enter](#botenter)
+* [Hit](#bothit)
+* [Place](#botplace)
+* [Say](#botsay)
+* [Wear](#botwear)
+* [Unwear](#botunwear)
+* [Warp](#botwarp)
+* [Wrench](#botwrench)
+* [WrenchPlayer](#botwrenchplayer)
+* [MoveDown](#botmovedown)
+* [MoveUp](#botmoveup)
+* [MoveRight](#botmoveright)
+* [MoveLeft](#botmoveleft)
+* [FindPath](#botfindpath)
+* [FindWorldPath](#botfindworldpath)
+* [LeaveWorld](#botleaveworld)
+* [SendGameMessage](#botsendgamemessage)
+* [SendGeneric](#botsendgeneric)
+* [SendRaw](#botsendraw)
+* [SendPacket](#botsendpacket)
+* [SetBubbleState](#botsetbubblestate)
+* [ToggleCollect](#bottogglecollect)
+* [AddHook](#botaddhook)
+* [RemoveHook](#botremovehook)
+* [RemoveHooks](#botremovehooks)
+
+### Inventory
+* [GetItem](#inventorygetitem)
+* [GetItems](#inventorygetitems)
+* [FindItem](#inventoryfinditem)
+* [GetItemCount](#inventorygetitemcount)
+* [isItemActive](#inventoryisitemactive)
+* [isEmpty](#inventoryisempty)
+
+### World
+* [GetTile](#worldgettile)
+* [GetTiles](#worldgettiles)
+* [GetObject](#worldgetobject)
+* [GetObjects](#worldgetobjects)
+* [GetPlayer](#worldgetplayer)
+* [GetPlayers](#worldgetplayers)
+* [GetNPC](#worldgetnpc)
+* [GetNPCs](#worldgetnpcs)
+* [GetAccessList](#worldgetaccesslist)
 
 # Structures
 
@@ -97,7 +135,7 @@
 | Number | `y` | y axis |
 | Number | `z` | z axis |
 
-## NightmareBot
+## Bot
 | Type | Name | Description|
 |:-----|:----:|:-----------|
 | String | `name` | Bot name |
@@ -324,7 +362,7 @@ print(Json(data)["player_name"])
 ```
 
 ## GetBot
-`NightmareBot* GetBot(string name)`
+`Bot* GetBot(string name)`
 
 Gets bot via name
 
@@ -335,7 +373,7 @@ bot:Say("i love Nightmare")
 ```
 
 ## GetBots
-`Table<NightmareBot*> GetBots()`
+`Table<Bot*> GetBots()`
 
 Gets all bots. (returns NightmareBot Table)
 
@@ -347,30 +385,29 @@ end
 ```
 
 ## GetItemInfo
-`Item* GetItemInfo(Number id) & Item* GetItemInfo(string name)`
+`static ItemInfo* GetItemInfo(int id)`
 
-Gets Item Info by item's id or item's name.
+Returns item info via item id.
 
 Example: 
 ```lua
-item = GetItemInfo("Legendary Wings")
+item = GetItemInfo(2)
 
-if item then -- Incase its a nil value.
-  print(item.clothingType)
-end
+print(string.format("{ item_name: %s, item_actionType: %i }",
+  item.name,
+  item.actionType))
 ```
 
-## GetItemInfos
-`Table<Item*> GetItemInfos()`
 
-Returns all item infos.
+## GetItemInfos
+`static Table<ItemInfo*> GetItemInfos()`
+
+Returns item infos table.
 
 Example: 
 ```lua
-for _, item in pairs(GetItemInfos()) do
-  if item.clothingType ~= 0 then
-    print(string.format("Item %s is cloth", item.name))
-  end
+for i, item_info in pairs(GetItemInfos()) do
+print(string.format("name: %s, id: %i", item_info.name, item_info.id))
 end
 ```
 
@@ -415,87 +452,188 @@ print(rtvar:GetParam("name"))
 -- (Seems useless for you? You can parse many packets like OnSpawn)
 ```
 
+## RTVAR:GetIntParam
+`number GetIntParam(string key)`
+
+Gets int Value by key.
+
+Example: 
+```lua
+rtvar = RTVAR([[
+name|Bongo
+userid|69
+]])
+
+print(rtvar:GetIntParam("userid"))
+```
+
+## RTVAR:GetLongParam
+`number GetLongParam(string key)`
+
+Gets long int Value by key.
+
+Example: 
+```lua
+rtvar = RTVAR([[
+name|Bongo
+userid|69999999999
+]])
+
+print(rtvar:GetLongParam("userid"))
+```
+
+## RTVAR:FindKey
+`bool FindKey(string key)`
+
+Check if key exists.
+
+Example: 
+```lua
+rtvar = RTVAR([[
+name|Bongo
+userid|69999999999
+]])
+
+if rtvar:FindKey("name") then
+  print("Found key name!")
+end
+```
 
 ## HttpClient:HttpClient
-`HttpClient* HttpClient(string url)`
+`HttpClient* HttpClient()`
 
 HttpClient Constructor
 
 Example: 
 ```lua
-client = HttpClient("https://www.growtopiagame.com")
+client = HttpClient()
 ```
 
+## HttpClient:SetURL
+`void SetURL(string url)`
+
+Sets url.
+
+Example: 
+```lua
+client = HttpClient()
+client:SetURL("https://www.google.com")
+```
+
+## HttpClient:SetPath
+`void SetPath(string path)`
+
+Sets path.
+
+Example: 
+```lua
+client = HttpClient()
+client:SetURL("https://www.google.com")
+client:SetPath("/some/random/path/")
+```
+
+## HttpClient:AddHeader
+`void AddHeader(string key, string value)`
+
+Adds custom header.
+
+Example: 
+```lua
+client = HttpClient()
+client:SetURL("https://www.google.com")
+client:SetPath("/some/random/path/")
+
+client:AddHeader("User-Agent", "Nightmare-Bot-Api")
+```
+
+## HttpClient:RemoveHeader
+`void RemoveHeader(string key)`
+
+Removes custom header if exists.
+
+Example: 
+```lua
+client = HttpClient()
+client:SetURL("https://www.google.com")
+client:SetPath("/some/random/path/")
+
+client:AddHeader("User-Agent", "Nightmare-Bot-Api")
+client:RemoveHeader("User-Agent")
+```
+
+## HttpClient:SetContentType
+`void SetContentType(string type)`
+
+Sets content type of data.
+
+Example: 
+```lua
+client = HttpClient()
+client:SetURL("https://www.google.com")
+client:SetPath("/some/random/path/")
+
+client:AddHeader("User-Agent", "Nightmare-Bot-Api")
+
+client:SetContentType("application/json")
+```
 
 ## HttpClient:GET
-`HttpResponse* GET(string path)`
+`HttpResult* GET(string path = "")`
 
 HTTP GET Request
 
 Example: 
 ```lua
-client = HttpClient("https://www.growtopiagame.com")
-response = client:GET('/')
+client = HttpClient()
+client:SetURL("https://www.google.com")
 
-print(response.body)
+response1 = client:GET()
+response2 = client:GET("/some/custom/path/")
+
+print(response1.body)
 ```
 
-
 ## HttpClient:POST
-`HttpResponse* POST(string path, string content, string content_type)`
+`HttpResult* POST(string path, string content)`
 
 HTTP POST Request
 
 Example: 
 ```lua
-client = HttpClient("https://catalog.roblox.com")
-response = client:POST("path_here", "content_here", "content_type_here")
+client = HttpClient()
+client:SetURL("https://catalog.roblox.com")
+client.SetContentType("application/json")
+response = client:POST("", "{ }")
 ```
 
+## HttpResult:GetError
+`number GetError()`
 
-## HttpClient:setHeaders
-`void setHeaders(Table<string, string> headers)`
-
-Used for setting custom headers.
+returns HTTP error value.
 
 Example: 
 ```lua
-client = HttpClient("https://www.growtopiagame.com")
-headers = {}
-headers["User-Agent"] = "Nightmare+"
+client = HttpClient()
+client:SetURL("https://catalog.roblox.com")
+response = client:GET()
 
-client:setHeaders(headers)
+print("Error Value: "..response:GetError())
 ```
 
+## Webhook:SendWebhook
+`void SendWebhook()`
 
-## ItemDatabase:GetItem
-`static ItemInfo* GetItem(int id)`
-
-Returns item info via item id.
+Sends webhook.
 
 Example: 
 ```lua
--- In Nightmare, there is static ItemDatabase class defined.
-item = ItemDatabase.GetItem(2)
+wh = Webhook("your_webhook_url")
+wh.username = "Nightmare Bot"
+wh.embed.title = "Test"
+wh.embed.description = "This is a test webhook!"
 
-print(string.format("{ item_name: %s, item_actionType: %i }",
-  item.name,
-  item.actionType))
+wh:SendWebhook()
 ```
-
-
-## ItemDatabase:GetItems
-`static Table<ItemInfo*> GetItems()`
-
-Returns items table.
-
-Example: 
-```lua
-for i, item_info in pairs(ItemDatabase.GetItems()) do
-print(string.format("name: %s, id: %i", item_info.name, item_info.id))
-end
-```
-
 
 ## Inventory:GetItem
 `InventoryItem* GetItem(int id)`
@@ -506,9 +644,8 @@ Example:
 ```lua
 bot = GetBot("Nightmare")
 inventory = bot:GetInventory()
-print(inventory:GetItem(242).count)
+print(GetItemInfo(242).count)
 ```
-
 
 ## Inventory:GetItems
 `Table<InventoryItem*> GetItem()`
@@ -522,6 +659,61 @@ print(string.format("{ item_id: %i; item_count: %i; }", item.id, item.count))
 end
 ```
 
+## Inventory:GetItemCount
+`Number GetItemCount(Number id)`
+
+Returns item count by id. 
+
+Example: 
+```lua
+count = GetBot("Wild"):GetInventory():GetItemCount(1784)
+
+if count == 0 then
+  print(string.format("Poor wild doesn't have %s", GetItemInfo(1784).name))
+end
+```
+
+## Inventory:FindItem
+`Number FindItem(Number id)`
+
+Returns item count by id. 
+
+Example: 
+```lua
+count = GetBot("Wild"):GetInventory():FindItem(1784)
+
+if count == 0 then
+  print(string.format("Poor wild doesn't have %s", GetItemInfo(1784).name))
+end
+```
+
+## Inventory:isItemActive
+`Bool isItemActive(Number id)`
+
+Returns true if bot is currently wearing the item. 
+
+Example: 
+```lua
+is_wearing = GetBot("Wild"):GetInventory():isItemActive(1784)
+
+if is_wearing then
+  print("Bot is currently wearing an item.")
+end
+```
+
+## Inventory:isEmpty
+`Bool isEmpty()`
+
+Returns true if bot inventory is empty which means never. (Because of fist and wrench)
+
+Example: 
+```lua
+is_inventory_empty = GetBot("Wild"):GetInventory():isEmpty()
+
+if is_inventory_empty then
+  print("Where is the fist and wrench?")
+end
+```
 
 ## World:GetTile
 `Tile* GetTile(int tileX, int tileY)`
@@ -599,7 +791,7 @@ Example:
 ```lua
 bot = GetBot("Nightmare")
 for i, obj in pairs(bot:GetWorld():GetObjects()) do
-print(string.format("Found %s in position (%i, %i).", ItemDatabase.GetItem(obj.id).name, obj.x, obj.y))
+print(string.format("Found %s in position (%i, %i).", GetItemInfo(obj.id).name, obj.x, obj.y))
 end
 ```
 
@@ -625,14 +817,51 @@ Returns NPC list.
 
 Example: 
 ```lua
-npc = GetBot("Nightmare"):GetWorld():GetNPC(0)
-if npc then
-print("World has npc!")
+npc_list = GetBot("Nightmare"):GetWorld():GetNPCs()
+for _, npc in pairs(npc_list) do
+print("Npc id: "..npc.id)
 end
 ```
 
+## World:GetAccessList
+`Table<Number> GetAccessList()`
 
-## NightmareBot:GetLocal
+Returns admin userids.
+
+Example: 
+```lua
+for _, admin in pairs(GetBot("Wild"):GetWorld():GetAccessList()) do
+  print("Admin found, userid: ", admin)
+end
+```
+
+## Bot:GetWorld
+`World* GetWorld()`
+
+Returns bot world.
+
+Example: 
+```lua
+world = GetBot("Nightmare"):GetWorld()
+print(world.name)
+```
+
+## Bot:GetInventory
+`Inventory* GetInventory()`
+
+Returns bot inventory.
+
+Example: 
+```lua
+bot = GetBot("Nightmare")
+inventory = bot:GetInventory()
+
+for _, item in pairs(inventory:GetItems()) do
+  bot:Drop(item.id, item.count)
+end
+```
+
+## Bot:GetLocal
 `NetAvatar* GetLocal()`
 
 Returns local net avatar.
@@ -646,7 +875,7 @@ end
 ```
 
 
-## NightmareBot:FindPath
+## Bot:FindPath
 `bool FindPath(int x, int y)`
 
 PathFinder.
@@ -657,7 +886,7 @@ GetBot("Nightmare"):FindPath(36, 36)
 ```
 
 
-## NightmareBot:FindWorldPath
+## Bot:FindWorldPath
 `bool FindWorldPath(float x, float y)`
 
 PathFinder.
@@ -668,7 +897,7 @@ GetBot("Nightmare"):FindWorldPath(420, 69)
 ```
 
 
-## NightmareBot:Hit
+## Bot:Hit
 `bool Hit(int tileX, int tileY)`
 
 For hitting Tile.
@@ -683,7 +912,7 @@ end
 ```
 
 
-## NightmareBot:Wrench
+## Bot:Wrench
 `bool Wrench(int tileX, int tileY)`
 
 For wrenching Tile.
@@ -697,8 +926,17 @@ if bot.connected then
 end
 ```
 
+## Bot:WrenchPlayer
+`void WrenchPlayer(Number netid)`
 
-## NightmareBot:Place
+To wrench a player by netid.
+
+Example: 
+```lua
+GetBot("Sogga"):WrenchPlayer(1)
+```
+
+## Bot:Place
 `bool Place(int tileX, int tileY, int itemID)`
 
 For placing blocks.
@@ -713,7 +951,7 @@ end
 ```
 
 
-## NightmareBot:Enter
+## Bot:Enter
 `bool Enter()`
 
 For entering door in bot position.
@@ -728,7 +966,7 @@ end
 ```
 
 
-## NightmareBot:Wear
+## Bot:Wear
 `bool Wear(int itemID)`
 
 For wearing clothes.
@@ -743,8 +981,8 @@ end
 ```
 
 
-## NightmareBot:UnWear
-`bool UnWear(int itemID)`
+## Bot:Unwear
+`bool Unwear(int itemID)`
 
 For unwearing clothes.
 
@@ -753,12 +991,12 @@ Example:
 bot = GetBot("Nightmare")
 
 if bot.connected then
-  if bot:GetLocal() then bot:UnWear(1784) end
+  if bot:GetLocal() then bot:Unwear(1784) end
 end
 ```
 
 
-## NightmareBot:Drop
+## Bot:Drop
 `bool Drop(int itemID, int itemCount)`
 
 For dropping inventory items.
@@ -773,7 +1011,7 @@ end
 ```
 
 
-## NightmareBot:Trash
+## Bot:Trash
 `bool Trash(int itemID, int itemCount)`
 
 For trashing inventory items.
@@ -788,7 +1026,7 @@ end
 ```
 
 
-## NightmareBot:LeaveWorld
+## Bot:LeaveWorld
 `void LeaveWorld()`
 
 For leaving world.
@@ -803,7 +1041,7 @@ end
 ```
 
 
-## NightmareBot:Warp
+## Bot:Warp
 `void Warp(string worldName, string doorID)`
 
 For warping.
@@ -816,7 +1054,7 @@ bot:Warp("JACKBOWE")
 ```
 
 
-## NightmareBot:Say
+## Bot:Say
 `void Say(string Text)`
 
 For chatting.
@@ -827,8 +1065,57 @@ bot = GetBot("Nightmare")
 bot:Say("Im noob :(")
 ```
 
+## Bot:MoveRight
+`void MoveRight()`
 
-## NightmareBot:SendRaw
+Bot Moves to Right.
+
+Example: 
+```lua
+GetBot("Nigmare"):MoveRight()
+```
+
+## Bot:MoveLeft
+`void MoveLeft()`
+
+Bot Moves to Left.
+
+Example: 
+```lua
+GetBot("Nigmare"):MoveLeft()
+```
+
+## Bot:MoveUp
+`void MoveUp()`
+
+Bot Moves to Up.
+
+Example: 
+```lua
+GetBot("Nigmare"):MoveUp()
+```
+
+## Bot:MoveDown
+`void MoveDown()`
+
+Bot Moves to Down.
+
+Example: 
+```lua
+GetBot("Nigmare"):MoveDown()
+```
+
+## Bot:SetBubbleState
+`void SetBubbleState(BubbleType type)`
+
+Sets bubble state of bot.
+
+Example: 
+```lua
+GetBot("Sogga"):SetBubbleState(BUBBLE_WRENCH)
+```
+
+## Bot:SendRaw
 `void SendRaw(GamePacket packet)`
 
 For sending raw packet.
@@ -837,7 +1124,7 @@ Example:
 ```lua
 bot = GetBot("Nightmare")
 
-packet = {}
+packet = GameUpdatePacket()
 packet.type = 0
 packet.int_x = -1
 packet.int_y = -1
@@ -850,7 +1137,7 @@ bot:SendRaw(packet)
 ```
 
 
-## NightmareBot:SendGameMessage
+## Bot:SendGameMessage
 `void SendGameMessage(string packet)`
 
 For sending game message.
@@ -862,7 +1149,7 @@ bot:SendGameMessage("action|join_request\nname|Github\ninvitedWorld|0")
 ```
 
 
-## NightmareBot:SendGeneric
+## Bot:SendGeneric
 `void SendGeneric(string packet)`
 
 For sending generic text.
@@ -874,7 +1161,7 @@ bot:SendGeneric("generic_text")
 ```
 
 
-## NightmareBot:SendPacket
+## Bot:SendPacket
 `void SendPacket(int type, string packet)`
 
 For sending packets via types.
@@ -885,8 +1172,7 @@ bot = GetBot("Nightmare")
 bot:SendPacket(2, "action|dialog_return\ndialog_name|Executor")
 ```
 
-
-## NightmareBot:Connect
+## Bot:Connect
 `bool Connect()`
 
 For connecting to gt server.
@@ -900,8 +1186,7 @@ if not bot.connected then
 end
 ```
 
-
-## NightmareBot:Disconnect
+## Bot:Disconnect
 `void Disconnect()`
 
 For disconnecting from gt server.
@@ -915,8 +1200,7 @@ if bot.connected then
 end
 ```
 
-
-## NightmareBot:AddHook
+## Bot:AddHook
 `void AddHook(enum<HookTypes> HookType, luaFunction function)`
 
 For adding hooks/callbacks.
@@ -925,7 +1209,7 @@ Example:
 ```lua
 bot = GetBot("Nightmare")
 
-function onReceivedVariantList(var)
+function onReceivedVariantList(bot, var)
 print(var[0])
 end
 
@@ -933,10 +1217,10 @@ bot:AddHook(OnVariantList, onReceivedVariantList)
 ```
 
 
-## NightmareBot:RemoveHook
+## Bot:RemoveHook
 `void RemoveHook(enum<HookTypes> HookType)`
 
-For removing specific hook.
+For removing specific hook by type.
 
 Example: 
 ```lua
@@ -945,7 +1229,7 @@ bot:RemoveHook(OnVariantList)
 ```
 
 
-## NightmareBot:RemoveHooks
+## Bot:RemoveHooks
 `void RemoveHooks()`
 
 For removing all hooks.
@@ -957,7 +1241,7 @@ bot:RemoveHooks()
 ```
 
 
-## NightmareBot:ToggleCollect
+## Bot:ToggleCollect
 `void ToggleCollect(bool isActive)`
 
 For toggling autocollect mode.
