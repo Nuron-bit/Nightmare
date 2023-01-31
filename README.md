@@ -254,6 +254,8 @@
 | Number | `type` | NPC type |
 | Number | `x` | NPC Position X |
 | Number | `y` | NPC Position Y |
+| Number | `dest_x` | NPC Destination X |
+| Number | `dest_y` | NPC Destination Y |
 
 ## GamePacket
 | Type | Name |
