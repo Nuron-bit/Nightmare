@@ -233,7 +233,7 @@
 | Number | `slab_state` | Slab State |
 | Number | `kranken_pattern_id` | Kranken Pattern |
 | Number | `cycle` | Infinity Weather Cycle |
-| Number | `storm_cycle | Storm Cloud Cycle |
+| Number | `storm_cycle` | Storm Cloud Cycle |
 | Number | `big_node` | Chemsynth Big Node Color ID |
 | Number | `small_node` | Chemsynth Small Node Color ID |
 | Number | `hat` | Hat ID |
