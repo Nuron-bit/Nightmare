@@ -6,7 +6,7 @@
 * [Events](#events)
 
 ## ChangeLogs
-- Updated Classes and added Hooks.
+- Updated Tiles.
 
 ## Enums
 * [Packet Type](#packettype)
@@ -25,6 +25,7 @@
 * [InventoryItem](#inventoryitem)
 * [World](#world)
 * [Tile](#tile)
+* [TileExtra](#tileextra)
 * [NetObject](#netobject)
 * [NetAvatar](#netavatar)
 * [Clothes](#clothes)
@@ -207,6 +208,81 @@
 | Number | `parent` | Tile parent |
 | Number | `flags` | Tile Flags |
 | TypeFlags | `typeflags` | Tile Type Flags |
+| TileExtra | `data` | Tile's Extra Data |
+| Boolean | `ready` | Tree Ready |
+| Boolean | `access` | Have Access |
+
+## TileExtra
+| Type | Name | Description|
+|:-----|:----:|:-----------|
+| Number | `type` | Tile Extra Type |
+| Number | `length` | Label Length |
+| String | `label` or `audio_label` | Tile Label |
+| Number | `crystal_count` | Tile Crystal Count |
+| Number | `locked` | is Door Locked |
+| Number | `growth` | Tile Growth Data |
+| Number | `uid` or `owner` | Primary UID |
+| Number | `id` or `item1` | Primary Item ID |
+| Number | `shelf1` | Shelf Item #1 |
+| Number | `shelf2` | Shelf Item #2 |
+| Number | `shelf3` | Shelf Item #3 |
+| Number | `shelf4` | Shelf Item #4 |
+| Number | `note` | Note ID of steam organ |
+| Number | `note_volume` | Note Volume of Audio |
+| Number | `temperature` | Oven Temperature |
+| Number | `slab_state` | Slab State |
+| Number | `kranken_pattern_id` | Kranken Pattern |
+| Number | `cycle` | Infinity Weather Cycle |
+| Number | `storm_cycle | Storm Cloud Cycle |
+| Number | `big_node` | Chemsynth Big Node Color ID |
+| Number | `small_node` | Chemsynth Small Node Color ID |
+| Number | `hat` | Hat ID |
+| Number | `shirt` | Shirt ID |
+| Number | `pant` | Pant ID |
+| Number | `shoes` | Shoes ID |
+| Number | `eye` | Eye ID |
+| Number | `hand` | Hand ID |
+| Number | `wing` | Wing ID |
+| Number | `hair` | Hair ID |
+| Number | `neck` | Neck ID |
+| Number | `pet_count` | Pet count on cage |
+| Number | `ghost_count` | Ghost Jar count on SSU |
+| Number | `expression` | Facial Expression |
+| Number | `admin_count` | Admin Count on a Lock or VIP Entrance |
+| Number | `egg_count` | Bunny Egg Count |
+| Number | `gbc_count` | Golden Booty Chest Count on Well of Love |
+| Number | `fish_count` | Fish Count on Port |
+| Number | `item_count` | Item Count |
+| Number | `ingredient_count` | Ingredient Count on Oven |
+| Number | `command_count` | Command Count on Cybots |
+| Number | `item_price` | Item Price on Vend |
+| Number | `food_satiety` | Food Satiety of Silkworm or Fish |
+| Number | `water_satiety` | Water Satiety of Silkworm |
+| Number | `cloud_animation_time` | Cloud Animation Time on Storm Cloud |
+| Number | `is_angelic_punched` | Angelic Cloud is punched |
+| Number | `role` | Portrait Role ID (6 = default) |
+| Number | `xp` | Training Fish XP |
+| Number | `spirit_item_count` | Spirit Item Count |
+| Number | `sick_growth` | Sick growth of Silkworm |
+| Number | `status` | Status of Automation Machines (Tm, Hog) |
+| Number | `level` | Training Fish Level |
+| Number | `required_player_count` | Required player count for spirit board. |
+| Number | `gem_count` | Gem count on automation machines |
+| Number | `item2` | Item2 (TOE 2nd Item) |
+| Number | `item2_count` | Item2 Count |
+| Number | `fruit_count` | Fruit Count of a Tree |
+| Number | `random_number` | Random Number on block like dice (Starts from 0) |
+| Number | `achievement` | Achievement ID |
+| Number | `mount_lb` | Displaying Fish Mount LB |
+| Number | `lb` | Fish LB |
+| Bool | `toe_harvesting` | Toe Harvesting Enabled |
+| Bool | `toe_collecting_seeds` | Toe Collecting Seeds Enabled |
+| Number | `emote_timer` | Emote Timer of Silkworm |
+| Number | `flags` | Checkbox Flags |
+| Number | `instrument` | Instrument on Steam Organ |
+| Number | `angelic_value` | Angelic Value as Number |
+| Number | `emote` | Silkworm Emote |
+| Number | `skincolor` or `blockcolor` or `itemcolor` or `color` | Color |
 
 ## NetObject
 | Type | Name | Description|
