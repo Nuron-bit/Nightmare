@@ -283,6 +283,7 @@
 | Number | `angelic_value` | Angelic Value as Number |
 | Number | `emote` | Silkworm Emote |
 | Number | `skincolor` or `blockcolor` or `itemcolor` or `color` | Color |
+| DATA1 | CONTAINER_4 | Will be accessed by functions. This will contain datas like admin uids, crystal ids, ingredients etc |
 
 ## NetObject
 | Type | Name | Description|
