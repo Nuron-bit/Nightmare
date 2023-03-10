@@ -21,6 +21,7 @@
 * [Embed](#embed)
 * [Webhook](#webhook)
 * [Bot](#bot)
+* [Console](#console)
 * [AutoFarm](#autofarm)
 * [AutoSpam](#autospam)
 * [AutoMessage](#automessage)
